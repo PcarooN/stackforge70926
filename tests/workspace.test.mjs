@@ -1,0 +1,12 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { importBlueprint, parseDrafts, validateDraft, simulate } from '../lib/workspace.ts';
+import { createBlueprint, SCENARIOS } from '../lib/blueprint.ts';
+const draft = { id:'sample-1', name:'My project', template:'welcome-reward', value:500, updatedAt:'2026-09-08T00:00:00Z' };
+test('valid draft is normalized and strips unknown fields',()=>{assert.equal(validateDraft({...draft,name:' My project ',secret:'ignored'}).name,'My project');assert.equal('secret' in validateDraft({...draft,secret:'ignored'}),false);});
+test('invalid project names, dates, ids and values rejected',()=>{for(const patch of [{name:''},{name:'a'.repeat(65)},{name:'a\u0000b'},{id:'../x'},{updatedAt:'invalid'},{value:NaN},{template:'unknown'}])assert.throws(()=>validateDraft({...draft,...patch}));});
+test('corrupt storage never silently becomes an empty list',()=>{for(const raw of ['invalid','{}','null',JSON.stringify([draft,draft]),JSON.stringify(Array(51).fill(draft))])assert.throws(()=>parseDrafts(raw));assert.deepEqual(parseDrafts('[]'),[]);});
+for(const s of SCENARIOS) test(s.id+' supports canonical JSON roundtrip',()=>{assert.deepEqual(importBlueprint(JSON.stringify(createBlueprint(s.id,s.value))),{template:s.id,value:s.value});});
+test('reject altered graph and incompatible imports',()=>{const b=createBlueprint('welcome-reward',500);for(const patch of [{format:'other'}, {illustrativeOnly:false},{target:'fivem'},{edges:[]},{nodes:[]},{template:'unknown'},{parameters:{startingBalance:999999}}])assert.throws(()=>importBlueprint(JSON.stringify({...b,...patch})));assert.throws(()=>importBlueprint(' '.repeat(100001)));assert.throws(()=>importBlueprint('{broken'));});
+test('first-visit and online eligibility paths',()=>{for(const [id,value] of [['welcome-reward',500],['scheduled-reward',30]]){assert.equal(simulate(id,value,true,10).passed,true);assert.equal(simulate(id,value,false,10).passed,false);assert.match(simulate(id,value,false,10).steps[2],/skipped/);}});
+test('level threshold boundaries',()=>{assert.equal(simulate('progression-unlock',10,true,9).passed,false);assert.equal(simulate('progression-unlock',10,true,10).passed,true);assert.equal(simulate('progression-unlock',10,true,11).passed,true);for(const level of [-1,101,NaN,1.5])assert.throws(()=>simulate('progression-unlock',10,true,level));});

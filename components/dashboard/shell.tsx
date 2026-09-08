@@ -9,6 +9,7 @@ import { Mark } from "../landing/primitives";
 import { Icon } from "./icon";
 const links = [
   { href: "/dashboard", label: "Overview", icon: "home" },
+  { href: "/dashboard/projects", label: "Local projects", icon: "grid" },
   { href: "/dashboard/templates", label: "Concept library", icon: "grid" },
   { href: "/dashboard/settings", label: "Account settings", icon: "settings" },
 ] as const;

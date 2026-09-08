@@ -156,6 +156,8 @@ export default function Catalog() {
             )}
           </code>
         </pre>
+        <a className="studio-button studio-secondary" href={`/playground?template=${selected.id}`}>Customize in public playground <Icon name="arrow" /></a>
+        <p>Public playground drafts are separate from your signed-in local projects.</p>
         <p role="status">{feedback}</p>
         <button
           className="studio-button"

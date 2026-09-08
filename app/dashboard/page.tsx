@@ -35,11 +35,11 @@ export default async function DashboardPage() {
             starts with a few blocks.
           </h2>
           <p>
-            Explore how events, conditions and actions fit together. These
-            concepts are a preview—not deployable game systems.
+            Configure events, conditions, and actions. Save local blueprints,
+            test sample events, and export JSON—not deployable game scripts.
           </p>
-          <a className="studio-button" href="/dashboard/templates">
-            Explore concept library <Icon name="arrow" />
+          <a className="studio-button" href="/dashboard/projects">
+            Open your projects <Icon name="arrow" />
           </a>
         </div>
         <div

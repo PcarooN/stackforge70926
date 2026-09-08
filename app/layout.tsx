@@ -5,7 +5,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "StackForge — Build your world, block by block",
   description:
-    "Explore StackForge: a web-first visual game-system builder in development. Try an interactive concept, inspect a blueprint and discover the planned roadmap.",
+    "Design game-system blueprints with StackForge. Configure workflows, simulate sample events, save local projects, and export JSON in a free browser playground.",
   openGraph: {
     title: "StackForge — Build your world, block by block",
     description:
