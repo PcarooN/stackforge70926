@@ -1,0 +1,184 @@
+.sf-session-header .sf-header-inner {
+  gap: 20px;
+}
+.sf-session-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+.sf-session-guest {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.sf-session-login {
+  font-size: 14px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+}
+.sf-session-profile {
+  position: relative;
+}
+.sf-session-trigger {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 44px;
+  max-width: 220px;
+  padding: 4px 10px 4px 4px;
+  border: 1px solid #c8d3ca;
+  border-radius: 8px;
+  background: white;
+  cursor: pointer;
+  font:
+    600 14px/1.5 Arial,
+    sans-serif;
+  color: #202421;
+}
+.sf-session-avatar {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  background: #e8efe6;
+  color: #355a39;
+  border-radius: 6px;
+  flex-shrink: 0;
+}
+.sf-session-name {
+  max-width: 128px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sf-session-panel {
+  position: absolute;
+  right: 0;
+  top: calc(100% + 10px);
+  width: 300px;
+  max-width: calc(100vw - 40px);
+  padding: 8px;
+  border: 1px solid #c8d3ca;
+  background: white;
+  box-shadow: 0 8px 24px #17291a14;
+  border-radius: 12px;
+  z-index: 50;
+}
+.sf-session-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 12px;
+  border-bottom: 1px solid #dfe4df;
+  margin-bottom: 4px;
+}
+.sf-session-identity strong {
+  font-size: 15px;
+}
+.sf-session-identity span {
+  font-size: 14px;
+  color: #5d665f;
+  overflow-wrap: anywhere;
+}
+.sf-session-identity small {
+  font-size: 14px;
+  color: #426747;
+}
+.sf-session-panel > a,
+.sf-session-logout button {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 44px;
+  width: 100%;
+  padding: 12px;
+  border: 0;
+  background: white;
+  border-radius: 6px;
+  font:
+    500 14px/1.5 Arial,
+    sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  color: #202421;
+}
+.sf-session-panel > a:hover,
+.sf-session-logout button:hover {
+  background: #f4f7f2;
+}
+.sf-session-logout {
+  margin: 0;
+}
+.sf-session-logout button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+.sf-session-error {
+  font-size: 14px !important;
+  line-height: 1.5;
+  color: #982f25;
+  padding: 8px 12px;
+  overflow-wrap: anywhere;
+}
+.sf-session-mobile-identity {
+  padding-top: 12px;
+  font-size: 14px;
+  color: #5d665f;
+  border-top: 1px solid #dfe4df;
+}
+.sf-session-mobile-identity strong {
+  display: block;
+  font-weight: 500;
+  overflow-wrap: anywhere;
+  color: #202421;
+}
+@media (max-width: 1100px) {
+  .sf-session-header .sf-desktop-nav {
+    gap: 16px;
+  }
+  .sf-session-name {
+    max-width: 100px;
+  }
+  .sf-session-header .sf-alpha {
+    display: none;
+  }
+}
+@media (max-width: 899px) {
+  .sf-session-guest {
+    display: none;
+  }
+  .sf-session-name {
+    display: none;
+  }
+  .sf-session-header .sf-header-inner {
+    gap: 12px;
+  }
+  .sf-session-panel {
+    right: 0;
+  }
+}
+@media (max-width: 420px) {
+  .sf-session-actions {
+    gap: 8px;
+  }
+  .sf-session-header .sf-brand {
+    font-size: 17px;
+    gap: 8px;
+  }
+  .sf-session-header .sf-menu-button {
+    padding: 8px;
+    font-size: 14px;
+    gap: 6px;
+  }
+  .sf-session-panel {
+    position: fixed;
+    top: 78px;
+    right: 20px;
+  }
+  .sf-session-trigger {
+    gap: 6px;
+  }
+}
